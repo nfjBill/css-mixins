@@ -1,0 +1,154 @@
+.text-truncate() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+//字体
+.ui-font(@fz,@color:#fff,@line-height:1.3) {
+  font-size: @fz;
+  color: @color;
+  line-height: @line-height;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.placeholder(@color: #ccc) {
+  // Firefox
+  &::-moz-placeholder {
+    color: @color;
+    opacity: 1;
+  }
+
+  // Internet Explorer 10+
+  &:-ms-input-placeholder {
+    color: @color;
+  }
+
+  // Safari and Chrome
+  &::-webkit-input-placeholder {
+    color: @color;
+  }
+}
+
+//去除元素本身样式
+.clearstyle() {
+  background: none;
+  border: none;
+
+  //ie下留白边问题 http://bbs.blueidea.com/thread-2970498-1-1.html
+  //float: left;
+
+  //苹果自带样式
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+  &::-ms-expand { display: none; }
+
+  //去高光
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  //-webkit-user-modify: read-write-plaintext-only;
+  //number箭头
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+  }
+
+  //去resize textarea
+  resize: none;
+
+  //去掉ie文本框后面的小xx
+  &::-ms-clear {
+    display: none;
+  }
+
+  //&:hover{
+  //  background: none;
+  //  border:none;
+  //}
+
+  outline: none;
+  border-radius: 0;
+
+  //&:focus{
+  //  outline: none;
+  //}
+}
+
+.clearfix {
+  &:after {
+    content:'';
+    clear: both;
+  }
+}
+
+//chrome下‘多行’文本超出后显示省略号 只支持chrome
+.text-overflow-multiline(@line) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: @line;
+  -webkit-box-orient: vertical;
+}
+
+//文本选择后颜色设置
+.selection-color(@color-bac,@color-fz) {
+  &::selection {
+    background: @color-bac;
+    color: @color-fz;
+  }
+}
+
+//3D文本
+.text3d(@color) {
+  color: @color;
+  text-shadow: 1px 1px 0 darken(@color, 5%),
+  2px 2px 0 darken(@color, 10%),
+  3px 3px 0 darken(@color, 15%),
+  4px 4px 0 darken(@color, 20%),
+  4px 4px 2 #000;
+}
+
+//模糊效果
+.blur(@px:5px) {
+  //filter: url('#{@path}blur.svg#blur'); /* FireFox, Chrome, Opera */
+  //background-image: url('#{@path}/blur.svg');
+
+  //autofix
+  //-webkit-filter: blur(@px); /* Chrome, Opera */
+  //-moz-filter: blur(@px);
+  //-ms-filter: blur(@px);
+  filter: blur(@px);
+
+  filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false); /* IE6~IE9 */
+}
+
+.table-none-pad(){
+  border-collapse:collapse;
+  border-spacing:0;
+
+  td,th{
+    padding: 0;
+  }
+}
+
+//表格边框颜色
+.table-border-color(@color:#f00){
+  border: 0;
+  border-right:1px solid @color;
+  border-bottom:1px solid @color;
+  @include table-none-pad;
+
+  td,th{
+    border-left:1px solid @color;
+    border-top:1px solid @color;
+  }
+}
+
+.text-wrap(){
+  word-wrap: break-word;
+  word-break: normal;
+}
+
+.text-nowrap(){
+  white-space:nowrap;
+}
