@@ -1,6 +1,6 @@
 {
   "name": "css-mixins",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "a css mixins with less and scss",
   "main": "index.js",
   "scripts": {
